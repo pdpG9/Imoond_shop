@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/swipeRefresh"
+    android:background="@color/white">
+
+    <com.amar.library.ui.StickyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:stickyHeader="@id/vg_search">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/basePadding">
+
+                <include
+                    android:id="@+id/bt_notificationLayout"
+                    layout="@layout/item_notification_index" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/red_for_bt"
+                    app:cardCornerRadius="@dimen/cardCornerRadius">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/bt_log_out"
+                        style="@style/SubTitleButtonStyle"
+                        android:background="?android:selectableItemBackground"
+                        android:text="@string/log_out"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/simpleTextSize" />
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/marginLarge"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:cardElevation="0dp">
+
+                <include layout="@layout/logo_layout" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/vg_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <LinearLayout
+                    android:id="@+id/searchLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/baseMargin"
+                    android:background="@drawable/bg_toolbar_search"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/middleOfViews">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/largeIconSize"
+                        android:layout_height="@dimen/largeIconSize"
+                        android:layout_marginHorizontal="@dimen/marginLarge"
+                        android:src="@drawable/ic_search"
+                        android:tint="@color/black_light" />
+
+                    <TextView
+                        style="@style/SubDescriptionTextStyle"
+                        android:text="Bolalar oyinchog`i" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/marginLarge"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="7"
+                tools:listitem="@layout/item_category" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/baseMargin"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_topProducts"
+                    style="@style/SubTitleButtonStyle"
+                    android:background="@drawable/bg_selected_button_home"
+                    android:text="@string/top_products" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/bt_recommendedProducts"
+                    style="@style/SubTitleButtonStyle"
+                    android:layout_marginHorizontal="@dimen/marginLarge"
+                    android:background="?android:selectableItemBackground"
+                    android:text="@string/recommended_for_you" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_product" />
+        </LinearLayout>
+    </com.amar.library.ui.StickyScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

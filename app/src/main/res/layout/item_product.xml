@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="0dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/cardCornerRadius"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/baseMargin">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_ProductItem"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/marginLarge"
+            android:scaleType="centerCrop"
+            android:src="@drawable/product_item"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNameProductItem"
+            style="@style/SubTitleTextStyle"
+            android:layout_marginTop="@dimen/baseMargin"
+            android:maxLines="1"
+            android:text="Product name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_ProductItem" />
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNameProductItem">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_favorite_check"
+                android:id="@+id/bt_favouriteItem"
+                android:tint="@color/red_for_bt" />
+
+            <TextView
+                android:text="1.2k"
+                android:id="@+id/tv_countLike"
+                android:layout_marginHorizontal="@dimen/baseMargin"
+                style="@style/SubDescriptionTextStyle"
+                />
+
+            <TextView
+                android:id="@+id/tv_descriptionProductItem"
+                android:text="Description product"
+                style="@style/SubDescriptionTextStyle"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/marginLarge"
+            android:orientation="horizontal"
+            android:padding="@dimen/basePadding"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCostProductItem"
+                style="@style/SubTitleTextStyle"
+                android:text="12 000 so`m"
+                android:maxLines="1"
+                android:layout_marginHorizontal="0dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_marginHorizontal="@dimen/middleOfViews"
+                android:text="@string/so_m"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                style="@style/SubTitleTextStyle"
+                />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

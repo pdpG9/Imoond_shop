@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/middleOfViews"
+    app:cardCornerRadius="@dimen/cardCornerRadius"
+    app:cardBackgroundColor="@color/fragment_background"
+    >
+
+    <LinearLayout
+        android:id="@+id/item_category_layout"
+        android:background="@color/fragment_background"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:id="@+id/iv_category_item"
+            android:scaleType="centerCrop"
+            android:src="@drawable/babies_toys" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title_category_item"
+            android:maxLines="2"
+            android:textSize="@dimen/descriptionTextSize"
+            android:text="@string/babies_toys"
+            style="@style/SubTitleTextStyle" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

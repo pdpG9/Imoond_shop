@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingHorizontal="@dimen/basePadding"
+    android:paddingTop="@dimen/basePadding"
+    android:background="@color/grey_bg"
+    tools:context=".ui.basket.BasketFragment">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_product_basket"
+                android:layout_width="match_parent"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_basket"
+                android:layout_height="wrap_content"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SubTitleButtonStyle"
+                android:layout_margin="@dimen/baseMargin"
+                android:text="@string/more_to_love"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_product" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="@dimen/basePadding"
+        android:background="@color/white"
+        android:layout_gravity="bottom">
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_uncheck"
+            android:background="?android:selectableItemBackground"
+            android:id="@+id/rbt_all"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/ItemTitleTextStyle"
+            android:text="@string/all"
+            android:layout_marginStart="@dimen/baseMargin"
+            />
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/ItemTitleTextStyle"
+            android:text="0,00"
+            android:id="@+id/tv_allValueProductInCard"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/ItemTitleTextStyle"
+            android:layout_marginHorizontal="@dimen/baseMargin"
+            android:text="@string/so_m"
+            />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_checkout"
+            android:layout_marginHorizontal="@dimen/baseMargin"
+            style="@style/SubDescriptionTextStyle"
+            android:background="@drawable/bg_button_uncheck"
+            android:text="@string/checkout"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/cardCornerRadius"
+    android:layout_margin="@dimen/baseMargin"
+    app:cardBackgroundColor="@color/white"
+    >
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/baseMargin"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_marginEnd="@dimen/baseMargin"
+        android:id="@+id/rbt_selectedItem"
+        android:layout_width="@dimen/baseIconSize"
+        android:layout_height="@dimen/baseIconSize"
+        android:scaleType="centerCrop"
+        android:background="?android:selectableItemBackground"
+         android:src="@drawable/ic_uncheck"
+        />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_itemCard"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/product_item"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="wrap_content"
+        android:layout_weight="3"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="6dp"
+        android:orientation="vertical"
+        >
+<TextView
+    style="@style/ItemTitleTextStyle"
+    android:text="Product name it is tv longer"
+    android:maxLines="2"
+    android:padding="0dp"
+    android:id="@+id/tv_nameProductCard"/>
+<TextView
+    style="@style/DescriptionTextStyle"
+    android:text="Product name it is tv longer"
+    android:maxLines="1"
+    android:id="@+id/tv_descriptionProductCard"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/SubTitleTextStyle"
+                android:text="2 880,31"
+                android:maxLines="1"
+                android:id="@+id/tv_costProductCard"/>
+            <TextView
+                style="@style/SubTitleTextStyle"
+                android:text="@string/so_m"
+                android:maxLines="1"
+                />
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+     <com.google.android.material.card.MaterialCardView
+         android:layout_width="@dimen/largeIconSize"
+         android:layout_height="@dimen/largeIconSize"
+         app:cardBackgroundColor="@color/white"
+         app:cardCornerRadius="@dimen/cardCornerRadius">
+         <ImageView
+             android:layout_margin="@dimen/basePadding"
+             android:src="@drawable/ic_add"
+             android:scaleType="centerCrop"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center_vertical"
+             android:textColor="@color/grey"
+             android:textSize="@dimen/largeIconSize"/>
+     </com.google.android.material.card.MaterialCardView>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SubTitleTextStyle"
+                android:text="1"
+                android:gravity="center"
+                android:textColor="@color/blue"
+                android:id="@+id/tv_countProductCard"/>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="@dimen/largeIconSize"
+                android:layout_height="@dimen/largeIconSize"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/cardCornerRadius">
+                <ImageView
+                    android:layout_margin="@dimen/basePadding"
+                    android:src="@drawable/ic_remove"
+                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/largeIconSize"/>
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>
