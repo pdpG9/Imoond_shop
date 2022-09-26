@@ -1,11 +1,9 @@
 package com.imoond.data.models.productModels
 
-import com.imoond.domain.model.productModels.Attribute
-import com.imoond.domain.model.productModels.Category
-import com.imoond.domain.model.productModels.DefaultAttribute
-import com.imoond.domain.model.productModels.Dimensions
-import com.imoond.domain.model.productModels.Image
-import com.imoond.domain.model.productModels.Links
+import Attribute
+import Category
+import DefaultAttribute
+import Dimensions
 
 
 data class ProductModelItem(

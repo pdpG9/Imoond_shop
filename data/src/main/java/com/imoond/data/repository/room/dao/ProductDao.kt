@@ -1,19 +1,32 @@
 package com.imoond.data.repository.room.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.imoond.data.repository.room.entity.ProductEntity
+import com.imoond.data.repository.room.entity.ProductEntityRoom
 
 @Dao
-interface ProductDao : BaseDao<ProductEntity> {
-    @Query("select * from ProductEntity")
-    suspend fun getProducts(): List<ProductEntity>
+interface ProductDao {
+    @Query("select * from products")
+    fun getProducts(): LiveData<List<ProductEntityRoom>>
 
-    @Query("select * from ProductEntity where id=:id")
-    suspend fun getProductById(id: Int): ProductEntity
+//    @Query("select * from ProductEntityRoom where id=:id")
+//    suspend fun getProductById(id: Int): ProductEntityRoom
+//
+//    @Query("select * from ProductEntityRoom where category=:category")
+//    suspend fun getProductsByCategory(category: String): List<ProductEntityRoom>
 
-    @Query("select * from ProductEntity where category=:category")
-    suspend fun getProductsByCategory(category: String): List<ProductEntity>
+    @Query("delete from products")
+    suspend fun deleteTable()
 
-    @Query("delete from ProductEntity")
-    override suspend fun deleteTable()
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(t:ProductEntityRoom)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(t:List<ProductEntityRoom>)
+
+    @Delete
+    suspend fun delete(t:ProductEntityRoom)
+
+    @Delete
+    suspend fun delete(t:List<ProductEntityRoom>)
 }

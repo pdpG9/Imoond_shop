@@ -20,7 +20,9 @@
                 android:id="@+id/rv_product_basket"
                 android:layout_width="match_parent"
                 tools:itemCount="3"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_basket"
+                android:orientation="vertical"
                 android:layout_height="wrap_content"/>
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/SubTitleButtonStyle"

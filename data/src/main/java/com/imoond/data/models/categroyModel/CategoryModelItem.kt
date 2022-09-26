@@ -1,8 +1,7 @@
 package com.imoond.data.models.categroyModel
 
-
-import com.imoond.domain.model.productModels.Image
-import com.imoond.domain.model.productModels.Links
+import com.imoond.data.models.productModels.Image
+import com.imoond.data.models.productModels.Links
 
 data class CategoryModelItem(
     val _links: Links?,

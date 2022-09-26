@@ -7,14 +7,13 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.imoondshop.R
-import com.imoond.domain.model.productModels.Image
 
-class ImagePagerAdapter(val list: List<Image>) :
+class ImagePagerAdapter(val list: List<String>) :
     RecyclerView.Adapter<ImagePagerAdapter.PagerViewHolder>() {
     inner class PagerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageView = itemView.findViewById<ImageView>(R.id.iv_imagepager)
         fun bind(position: Int) {
-            Glide.with(itemView.context).load(list.get(position).src).into(imageView)
+            Glide.with(itemView.context).load(list.get(position)).into(imageView)
 
         }
     }

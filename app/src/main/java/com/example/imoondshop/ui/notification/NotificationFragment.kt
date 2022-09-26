@@ -11,7 +11,7 @@ import com.example.imoondshop.R
 import com.example.imoondshop.databinding.FragmentNotificationBinding
 
 class NotificationFragment : Fragment() {
-    private lateinit var viewModel: NotificationViewModel
+    private lateinit var vm: NotificationViewModel
     private var _binding:FragmentNotificationBinding? = null
     val binding get() = _binding
 
@@ -25,10 +25,14 @@ class NotificationFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NotificationViewModel::class.java)
+        vm = ViewModelProvider(this).get(NotificationViewModel::class.java)
        binding!!.btBack.setOnClickListener {
            findNavController().popBackStack()
        }
+        vm.notifications.observe(viewLifecycleOwner){
+            binding!!.tvNotNotif.visibility = View.INVISIBLE
+        }
+
     }
 
 }

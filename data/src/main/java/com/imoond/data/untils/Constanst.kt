@@ -1,5 +1,6 @@
 package com.imoond.data.untils
 object Constants{
+   const val DB_NAME = "imoond.db"
     const val BASE_URL = "https://imoond.com/"
     const val consumer_key = "consumer_key"
     const val consumer_secret = "consumer_secret"
@@ -8,4 +9,5 @@ object Constants{
 //    const val BASE_URL = "https://cbu.uz/"
 //    const val BASE_URL = "https://jsonplaceholder.typicode.com/"
     const val PRODUCT_ID = "productId"
+    const val CARD_PRODUCTS = "CARD_PRODUCTS"
 }

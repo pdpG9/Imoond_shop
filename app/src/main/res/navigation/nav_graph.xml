@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_homeFragment_to_productInfoFragment"
             app:destination="@id/productInfoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
@@ -35,6 +38,9 @@
         <action
             android:id="@+id/action_categoryFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_categoryFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
     </fragment>
     <fragment
         android:id="@+id/basketFragment"
@@ -57,11 +63,10 @@
         tools:layout="@layout/fragment_product_info" >
         <action
             android:id="@+id/action_productInfoFragment_to_basketFragment"
-            app:destination="@id/basketFragment"
-            app:enterAnim="@android:anim/slide_out_right"
-            app:exitAnim="@android:anim/slide_in_left"
-            app:popEnterAnim="@android:anim/slide_out_right"
-            app:popExitAnim="@android:anim/slide_in_left" />
+            app:destination="@id/basketFragment" />
+        <action
+            android:id="@+id/action_productInfoFragment_to_buyFragment"
+            app:destination="@id/buyFragment" />
     </fragment>
     <fragment
         android:id="@+id/notificationFragment"
@@ -80,4 +85,14 @@
             android:id="@+id/action_searchFragment_to_productInfoFragment"
             app:destination="@id/productInfoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.example.imoondshop.ui.products.ProductListFragment"
+        android:label="fragment_product_list"
+        tools:layout="@layout/fragment_product_list" />
+    <fragment
+        android:id="@+id/buyFragment"
+        android:name="com.example.imoondshop.ui.buy.BuyFragment"
+        android:label="fragment_buy"
+        tools:layout="@layout/fragment_buy" />
 </navigation>

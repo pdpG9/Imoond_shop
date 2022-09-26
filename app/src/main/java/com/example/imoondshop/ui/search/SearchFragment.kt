@@ -1,33 +1,97 @@
 package com.example.imoondshop.ui.search
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.imoondshop.R
 import com.example.imoondshop.databinding.FragmentSearchBinding
+import com.example.imoondshop.ui.adapter.ProductAdapter
+import com.example.imoondshop.ui.adapter.ProductClickListener
+import com.example.imoondshop.untils.Constants
+import com.imoond.data.repository.room.maps.ProductMapper
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
-    private lateinit var viewModel: SearchViewModel
-    private val binding get() = _binding
+    private val vm by viewModel<SearchViewModel>()
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        return binding!!.root
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
-        binding!!.btBack.setOnClickListener {
-            findNavController().popBackStack(R.id.searchFragment,true)
+        binding.btBack.setOnClickListener {
+            findNavController().popBackStack(R.id.searchFragment, true)
+        }
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                Log.d("TAG", "onQueryTextSubmit: $p0")
+                return true
+            }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                Log.d("TAG", "onQueryTextChange: $p0")
+                lifecycleScope.launch {
+                    vm.getProductsByName(p0.toString())
+                }
+                return true
+            }
+
+        })
+        binding.apply {
+            rvResultSearch.layoutManager =
+                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            btNotifView.btNotification.setOnClickListener {
+                findNavController().navigate(R.id.action_searchFragment_to_notificationFragment)
+            }
+        }
+        vm.apply {
+            products.observe(viewLifecycleOwner) {
+
+                val adapter = ProductAdapter(it, object : ProductClickListener {
+                    override fun onClick(position: Int) {
+                        val bundle = bundleOf(Constants.PRODUCT_ID to position)
+                        Log.d("TAG", "onClick: $position")
+                        findNavController().navigate(
+                            R.id.action_searchFragment_to_productInfoFragment,
+                            bundle
+                        )
+                    }
+
+                })
+                binding.apply {
+                    rvResultSearch.adapter = adapter
+                }
+            }
+            message.observe(viewLifecycleOwner) {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            }
+            isShowProgress.observe(viewLifecycleOwner) {
+                if (it) {
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+
         }
     }
 

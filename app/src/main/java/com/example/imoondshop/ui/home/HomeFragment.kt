@@ -1,12 +1,12 @@
 package com.example.imoondshop.ui.home
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -17,12 +17,14 @@ import com.example.imoondshop.ui.adapter.CategoryAdapter
 import com.example.imoondshop.ui.adapter.ProductAdapter
 import com.example.imoondshop.ui.adapter.ProductClickListener
 import com.example.imoondshop.untils.Constants
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class HomeFragment : Fragment() {
 
 
-    private lateinit var viewModel: HomeViewModel
+    private val vm by viewModel<HomeViewModel>()
     private var _binding: FragmentHomeBinding? = null
     private var isDownload = false
     private val binding get() = _binding!!
@@ -37,25 +39,35 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(
-            this,
-            HomeViewModelFactory(this.lifecycleScope)
-        )[HomeViewModel::class.java]
-        if (!isDownload){
-        viewModel.loadData()
-            isDownload = true
+
+        if (!isDownload) {
+            lifecycleScope.launch {
+                vm.loadData()
+            }
         }
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.loadData()
+            lifecycleScope.launch {
+                vm.loadData()
+            }
         }
 
-        viewModel.apply {
+        vm.apply {
+            message.observe(viewLifecycleOwner) {
+                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+            }
+            isShowProgress.observe(viewLifecycleOwner) {
+                binding.swipeRefresh.isRefreshing = it
+            }
+
             productLive.observe(viewLifecycleOwner) {
-                val adapter = ProductAdapter(it,object :ProductClickListener{
+                val adapter = ProductAdapter(it, object : ProductClickListener {
                     override fun onClick(position: Int) {
                         val bundle = bundleOf(Constants.PRODUCT_ID to position)
                         Log.d("TAG", "onClick: $position")
-                        findNavController().navigate(R.id.action_homeFragment_to_productInfoFragment,bundle)
+                        findNavController().navigate(
+                            R.id.action_homeFragment_to_productInfoFragment,
+                            bundle
+                        )
                     }
 
                 })
@@ -66,11 +78,19 @@ class HomeFragment : Fragment() {
                     listProduct.adapter = adapter
                 }
             }
-            isRefresh.observe(viewLifecycleOwner) {
-                binding.swipeRefresh.isRefreshing = it
-            }
             categoryLive.observe(viewLifecycleOwner) {
-                val adapter = CategoryAdapter(it)
+                val adapter = CategoryAdapter(it,object :ProductClickListener{
+                    override fun onClick(position: Int) {
+                        val bundle = bundleOf(Constants.CATEGORY_KEY to it[position].name)
+
+                        Log.d("TAG", "onClick: $position")
+                        findNavController().navigate(
+                            R.id.action_homeFragment_to_productListFragment,
+                            bundle
+                        )
+                    }
+
+                })
                 binding.listCategory.adapter = adapter
             }
             isClickBtTopProd.observe(viewLifecycleOwner) {
@@ -86,14 +106,15 @@ class HomeFragment : Fragment() {
         }
 
         binding.apply {
-            btNotificationLayout.btNotification.setOnClickListener {
+            btNotification.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
             }
+
             btTopProducts.setOnClickListener {
-                viewModel.clickTopProductBt()
+                vm.clickTopProductBt()
             }
             btRecommendedProducts.setOnClickListener {
-                viewModel.clickRecommendedProdBt()
+                vm.clickRecommendedProdBt()
             }
             binding.searchLayout.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_searchFragment)

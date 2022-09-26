@@ -8,13 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.imoondshop.R
-import com.imoond.domain.model.ProductModel
+import com.imoond.domain.model.ProductEntity
 
-class ProductAdapter(val list: List<ProductModel>, listener: ProductClickListener) :
+class ProductAdapter(val list: List<ProductEntity>, listener: ProductClickListener) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
     private val listener = listener
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         private val image = itemView.findViewById<ImageView>(R.id.iv_ProductItem)
         private val title = itemView.findViewById<TextView>(R.id.tvNameProductItem)
         private val cost = itemView.findViewById<TextView>(R.id.tvCostProductItem)
@@ -27,11 +27,11 @@ class ProductAdapter(val list: List<ProductModel>, listener: ProductClickListene
                 listener.onClick(product.id)
             }
             Glide.with(itemView)
-                .load(product.imageUrl)
+                .load(product.images[0])
                 .centerCrop()
                 .placeholder(R.drawable.product_item)
                 .into(image)
-            title.text = product.title
+            title.text = product.name
             cost.text = product.price
 //            if (product.isFavourite){
 //            favButton.setImageResource(R.drawable.ic_favorite_check)

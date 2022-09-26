@@ -1,18 +1,22 @@
 package com.example.imoondshop.ui.basket
 
 import android.annotation.SuppressLint
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import com.example.imoondshop.R
 import com.example.imoondshop.databinding.FragmentBasketBinding
+import com.example.imoondshop.ui.adapter.BasketProductAdapter
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BasketFragment : Fragment() {
 
-    private lateinit var viewModel: BasketViewModel
+    private val vm by viewModel<BasketViewModel>()
     private var _binding: FragmentBasketBinding? = null
     private val binding get() = _binding!!
 
@@ -27,9 +31,14 @@ class BasketFragment : Fragment() {
     @SuppressLint("ResourceAsColor")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this)[BasketViewModel::class.java]
 
-        viewModel.apply {
+        vm.apply {
+            loadData()
+            productIdsCard.observe(viewLifecycleOwner){
+                lifecycleScope.launch {
+                loadProducts(it)
+                }
+            }
             btAllCheck.observe(viewLifecycleOwner){
                 if (it){
                     binding.apply {
@@ -48,10 +57,16 @@ class BasketFragment : Fragment() {
                     }
                 }
             }
+            products.observe(viewLifecycleOwner){
+                binding.rvProductBasket.adapter = BasketProductAdapter(it)
+                lifecycleScope.launch {
+                    loadRecommendedProducts()
+                }
+            }
         }
 
         binding.rbtAll.setOnClickListener {
-            viewModel.clickAllBtCheck()
+            vm.clickAllBtCheck()
         }
     }
 

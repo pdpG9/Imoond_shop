@@ -5,35 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.notification.NotificationFragment">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="@dimen/largeIconSize"
-            android:layout_height="@dimen/largeIconSize"
-            android:layout_marginStart="@dimen/baseMargin"
-            app:cardCornerRadius="@dimen/cardCornerRadius"
-            app:cardElevation="0dp">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="@dimen/largeIconSize"
+                android:layout_height="@dimen/largeIconSize"
+                android:layout_marginStart="@dimen/baseMargin"
+                app:cardCornerRadius="@dimen/cardCornerRadius"
+                app:cardElevation="0dp">
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/bt_back"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?android:selectableItemBackground"
-                android:scaleType="center"
-                android:src="@drawable/ic_arrow_back"
-                android:tint="@color/black" />
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/bt_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:selectableItemBackground"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_arrow_back"
+                    android:tint="@color/black" />
 
-        </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/SubTitleButtonStyle"
-            android:layout_marginHorizontal="@dimen/baseMargin"
-            android:text="@string/notification" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SubTitleButtonStyle"
+                android:layout_marginHorizontal="@dimen/baseMargin"
+                android:text="@string/notification" />
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/listNotifications"/>
     </LinearLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+    style="@style/DescriptionTextStyle"
+        android:layout_gravity="center"
+        android:text="not notifications"
+        android:id="@+id/tv_notNotif"/>
+    <ProgressBar
+        android:visibility="invisible"
+        android:layout_marginTop="@dimen/baseMargin"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"/>
+
 
 </FrameLayout>

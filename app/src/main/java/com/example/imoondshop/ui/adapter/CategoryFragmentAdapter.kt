@@ -8,19 +8,22 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.imoondshop.R
-import com.imoond.domain.model.CategoryModel
+import com.imoond.domain.model.CategoryEntity
 
-class CategoryFragmentAdapter(val list: List<CategoryModel>) :
+class CategoryFragmentAdapter(val list: List<CategoryEntity>,private val listener: ProductClickListener) :
     RecyclerView.Adapter<CategoryFragmentAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image = itemView.findViewById<ImageView>(R.id.iv_category_fragment_item)
         val name = itemView.findViewById<TextView>(R.id.tv_name_category_fragment_item)
         fun bind(position: Int) {
+            itemView.setOnClickListener {
+                listener.onClick(position)
+            }
             val data = list.get(position)
             name.text = data.name
             Glide.with(itemView)
-                .load(data.imageUrl)
+                .load(data.images)
                 .centerCrop()
                 .into(image)
 

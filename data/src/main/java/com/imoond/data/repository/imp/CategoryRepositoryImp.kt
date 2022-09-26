@@ -1,29 +1,61 @@
 package com.imoond.data.repository.imp
 
 import com.imoond.data.repository.network.CategoryApi
+import com.imoond.data.repository.room.maps.CategoryMapper
+import com.imoond.domain.model.CategoryEntity
 import com.imoond.domain.repository.CategoryRepository
-import com.imoond.domain.repository.Event
 import com.imoond.domain.repository.EventListener
-import java.lang.Exception
+
 
 
 class CategoryRepositoryImp(private val categoryApi: CategoryApi):CategoryRepository {
-    override suspend fun getCategories(eventListener: EventListener) {
+    override suspend fun getCategories(eventListener: EventListener<List<CategoryEntity>>) {
         try {
-                eventListener.render(Event.Loading)
+            eventListener.load(true)
             val response = categoryApi.getCategories()
             if (response.isSuccessful){
                 if (!response.body().isNullOrEmpty()){
-            eventListener.render(Event.Success(response.body()))
+                    val list = response.body()!!.toList()
+                    val data = CategoryMapper().mapListEntity(list)
+            eventListener.success(data)
+                    eventListener.load(false)
                 }else{
-                    eventListener.render(Event.Empty)
+                    eventListener.empty()
+                    eventListener.load(false)
                     return
                 }
             }else{
-                eventListener.render(Event.Error(response.message()))
+                eventListener.error(response.message())
+                    eventListener.load(false)
             }
         }catch (e:Exception){
-            eventListener.render(Event.Error(e.message.toString()))
+            eventListener.error(e.message.toString())
+                    eventListener.load(false)
+        }
+
+    }
+
+    override suspend fun getCategoryByName(
+        name: String,
+        eventListener: EventListener<List<CategoryEntity>>
+    ) {
+        try {
+            eventListener.load(true)
+            val response = categoryApi.getCategories()
+            if (response.isSuccessful&&!response.body().isNullOrEmpty()){
+                val list = response.body()!!.toList()
+                 list?.filter {
+                     it.name == name
+                 }
+                val data = CategoryMapper().mapListEntity(list)
+                eventListener.success(data)
+                eventListener.load(false)
+            }else{
+                eventListener.error("response body null or empty!")
+            }
+
+        }catch (e:Exception){
+            eventListener.error(e.message.toString())
         }
 
     }

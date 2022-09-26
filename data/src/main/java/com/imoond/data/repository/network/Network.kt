@@ -1,6 +1,5 @@
 package com.imoond.data.repository.network
 import android.util.Log
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.imoond.data.untils.Constants
 
 import okhttp3.OkHttpClient

@@ -1,79 +1,158 @@
 package com.imoond.data.repository.imp
 
 import com.imoond.data.repository.network.ProductApi
-import com.imoond.domain.repository.Event
+import com.imoond.data.repository.room.maps.ProductMapper
+import com.imoond.domain.model.ProductEntity
 import com.imoond.domain.repository.EventListener
 import com.imoond.domain.repository.ProductRepository
 import java.lang.Exception
 
 class ProductRepositoryImp(private val productApi: ProductApi) : ProductRepository {
-    override suspend fun getProductList(eventListener: EventListener) {
+    override suspend fun getProductList(eventListener: EventListener<List<ProductEntity>>) {
         try {
-            eventListener.render(Event.Loading)
+            eventListener.load(true)
             val response = productApi.getAll()
-            if (response.isSuccessful){
-                if (response.body().isNullOrEmpty()){
-                    eventListener.render(Event.Empty)
-                return
+            if (response.isSuccessful) {
+                if (response.body().isNullOrEmpty()) {
+                    eventListener.empty()
+                    return
                 }
-                eventListener.render(Event.Success(response.body()))
+                val data = ProductMapper().mapListEntity(response.body()!!.toList())
+                eventListener.success(data)
 
-            }else{
-                eventListener.render(Event.Error(response.message()))
+            } else {
+                eventListener.error(response.message())
             }
-        }catch (e:Exception){
-            eventListener.render(Event.Error("${e.message}"))
+        } catch (e: Exception) {
+            eventListener.error(e.message.toString())
         }
     }
 
-    override suspend fun getProductById(productId: Int, eventListener: EventListener) {
+    override suspend fun getProductById(
+        productId: Int,
+        eventListener: EventListener<ProductEntity>
+    ) {
         try {
-            eventListener.render(Event.Loading)
+            eventListener.load(true)
             val response = productApi.getProductById(productId)
-            if (response.isSuccessful){
-                if (response.body()!=null){
-                    eventListener.render(Event.Empty)
+            if (response.isSuccessful) {
+                if (response.body()==null) {
+                    eventListener.empty()
+                    eventListener.load(false)
                     return
                 }
-                eventListener.render(Event.Success(response.body()))
+                val data = ProductMapper().mapEntity(response.body()!!)
+                eventListener.success(data)
+                eventListener.load(false)
 
-            }else{
-                eventListener.render(Event.Error(response.message()))
+            } else {
+                eventListener.error(response.message())
+                eventListener.load(false)
             }
-        }catch (e:Exception){
-            eventListener.render(Event.Error("${e.message}"))
+        } catch (e: Exception) {
+            eventListener.error(e.message.toString())
+            eventListener.load(false)
         }
     }
 
-    override suspend fun getProductByName(name: String, eventListener: EventListener) {
+    override suspend fun getProductsByName(
+        name: String,
+        eventListener: EventListener<List<ProductEntity>>
+    ) {
         try {
-            eventListener.render(Event.Loading)
+            eventListener.load(true)
             val response = productApi.getAll()
-            if (response.isSuccessful){
-                if (response.body().isNullOrEmpty()){
-                    eventListener.render(Event.Empty)
+            if (response.isSuccessful) {
+                if (response.body().isNullOrEmpty()) {
+                    eventListener.empty()
+                    eventListener.load(false)
                     return
+                } else {
+                    val list = response.body()!!.filter {
+                        it.name.lowercase().startsWith(name.lowercase())
+                    }
+                    val data = ProductMapper().mapListEntity(list)
+                    eventListener.success(data)
+                    eventListener.load(false)
                 }
-                eventListener.render(Event.Success(response.body()))
-
-            }else{
-                eventListener.render(Event.Error(response.message()))
+            } else {
+                eventListener.error(response.message())
+                eventListener.load(false)
             }
-        }catch (e:Exception){
-            eventListener.render(Event.Error("${e.message}"))
+        } catch (e: Exception) {
+            eventListener.error(e.message.toString())
+            eventListener.load(false)
         }
     }
 
-    override suspend fun getTopProducts(eventListener: EventListener) {
-        TODO("Not yet implemented")
+    override suspend fun getTopProducts(eventListener: EventListener<List<ProductEntity>>) {
+        try {
+            eventListener.load(true)
+            val response = productApi.getAll()
+            if (response.isSuccessful) {
+                if (response.body().isNullOrEmpty()) {
+                    eventListener.empty()
+                    eventListener.load(false)
+                    return
+                }
+                val data = ProductMapper().mapListEntity(response.body()!!.toList())
+                eventListener.success(data)
+                eventListener.load(false)
+
+            } else {
+                eventListener.error(response.message())
+                eventListener.load(false)
+            }
+        } catch (e: Exception) {
+            eventListener.error(e.message.toString())
+            eventListener.load(false)
+        }
     }
 
-    override suspend fun getRecommended(eventListener: EventListener) {
-        TODO("Not yet implemented")
+    override suspend fun getRecommended(eventListener: EventListener<List<ProductEntity>>) {
+        try {
+            eventListener.load(true)
+            val response = productApi.getAll()
+            if (response.isSuccessful) {
+                if (response.body().isNullOrEmpty()) {
+                    eventListener.empty()
+                    return
+                }
+                val data = ProductMapper().mapListEntity(response.body()!!.toList())
+                eventListener.success(data)
+
+            } else {
+                eventListener.error(response.message())
+            }
+        } catch (e: Exception) {
+            eventListener.error(e.message.toString())
+        }
     }
 
-    override suspend fun getProductByCategory(eventListener: EventListener) {
-        TODO("Not yet implemented")
+    override suspend fun getProductsByCategory(
+        eventListener: EventListener<List<ProductEntity>>,
+        categoryName: String
+    ) {
+        try {
+            eventListener.load(true)
+            val response = productApi.getAll()
+            if (response.isSuccessful) {
+                if (response.body().isNullOrEmpty()) {
+                    eventListener.empty()
+                    return
+                } else {
+                    val list = response.body()!!.filter {
+                        it.categories[0].name == categoryName
+                    }
+                    val data = ProductMapper().mapListEntity(list)
+                    eventListener.success(data)
+                }
+            } else {
+                eventListener.error(response.message())
+            }
+        }catch (e: Exception) {
+            eventListener.error(e.message.toString())
+        }
     }
 
 }

@@ -1,4 +1,7 @@
 package com.imoond.domain.model
+
+import java.io.Serializable
+
 data class ProductEntity(
     val id:Int,
     val name:String,
@@ -12,6 +15,8 @@ data class ProductEntity(
     val width:String,
     val height:String,
     val images:List<String>,
-    val category:String
+    val category:String,
+    var cardCount:Int = 1,
+    var isSelected:Boolean = false
 
-)
+):Serializable

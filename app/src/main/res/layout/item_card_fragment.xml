@@ -14,14 +14,11 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:layout_marginEnd="8dp"
+    <RadioButton
+        android:padding="@dimen/basePadding"
         android:id="@+id/rbt_selectedItem"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:scaleType="centerCrop"
-        android:background="?android:selectableItemBackground"
-         android:src="@drawable/ic_uncheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         />
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -92,6 +89,7 @@
          android:layout_width="32dp"
          android:layout_height="32dp"
          app:cardElevation="0.3dp"
+         android:id="@+id/bt_AddCount"
          app:cardBackgroundColor="@color/white"
          app:cardCornerRadius="16dp">
          <ImageView
@@ -117,6 +115,7 @@
                 android:layout_width="32dp"
                 app:cardElevation="0.3dp"
                 android:layout_height="32dp"
+                android:id="@+id/bt_removeCount"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="16dp">
                 <ImageView

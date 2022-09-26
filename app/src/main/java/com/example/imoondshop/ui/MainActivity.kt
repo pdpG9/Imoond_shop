@@ -1,9 +1,10 @@
 package com.example.imoondshop.ui
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.view.View
+import android.view.WindowManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
@@ -50,21 +51,10 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavView.visibility = View.GONE
 
     }
-
-    override fun onBackPressed() {
-        isFinish++
-        object : CountDownTimer(2000, 1000) {
-            override fun onTick(p0: Long) {
-                if (isFinish > 2) {
-                    System.exit(0)
-                }
-            }
-
-            override fun onFinish() {
-                isFinish = 0
-            }
-
-        }
-     //   super.onBackPressed()
+    private fun changeColorStatusBar(color:Int){
+        val window = window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = color
     }
+
 }

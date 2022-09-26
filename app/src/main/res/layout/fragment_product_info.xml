@@ -1,296 +1,308 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
     tools:context=".ui.product_info.ProductInfoFragment">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="@color/black"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/bt_back"
-            android:layout_width="@dimen/largeIconSize"
-            android:layout_height="@dimen/largeIconSize"
-            android:layout_margin="@dimen/basePadding"
-            android:background="?android:selectableItemBackground"
-            android:src="@drawable/ic_arrow_back" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center">
-
-            <include layout="@layout/logo_layout_min" />
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="@dimen/largeIconSize"
-            android:layout_height="@dimen/largeIconSize">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/bt_shoppingCard"
-                android:layout_width="@dimen/largeIconSize"
-                android:layout_height="@dimen/largeIconSize"
-                android:layout_marginHorizontal="@dimen/baseMargin"
-                android:background="?android:selectableItemBackground"
-                android:src="@drawable/ic_shopping_cart"
-                android:tint="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cv_count_product_basket"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                app:cardBackgroundColor="@color/red_for_bt"
-                app:cardCornerRadius="8dp"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_count_product_basket"
-                    style="@style/IndexCountTextStyle"
-                    android:text="2" />
-            </com.google.android.material.card.MaterialCardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/bt_share"
-            android:layout_width="@dimen/largeIconSize"
-            android:layout_height="@dimen/largeIconSize"
-            android:layout_marginEnd="@dimen/marginLarge"
-            android:background="?android:selectableItemBackground"
-            android:src="@drawable/ic_share"
-            android:tint="@color/white" />
-    </LinearLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="@dimen/basePadding">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="?actionBarSize"
+            android:background="@color/black"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/bt_back"
+                android:layout_width="@dimen/largeIconSize"
+                android:layout_height="@dimen/largeIconSize"
+                android:layout_margin="@dimen/basePadding"
+                android:background="?android:selectableItemBackground"
+                android:src="@drawable/ic_arrow_back" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <include layout="@layout/logo_layout_min" />
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/imagePager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:itemCount="5"
-                    tools:listitem="@layout/item_image_pager" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/baseMargin"
-                android:orientation="horizontal"
-                android:paddingHorizontal="@dimen/basePadding">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_priceProductInfo"
-                    style="@style/SubTitleButtonStyle"
-                    android:text="12000" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/SubTitleButtonStyle"
-                    android:text="@string/so_m" />
-                <FrameLayout
-                    android:layout_marginStart="@dimen/baseMargin"
-                    android:layout_gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tv_costProductInfo"
-                            style="@style/DescriptionTextStyle"
-                            android:text="14000" />
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_marginStart="@dimen/middleOfViews"
-                            style="@style/DescriptionTextStyle"
-                            android:text="@string/so_m" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/red_for_bt"/>
-
-
-                </FrameLayout>
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                android:layout_width="@dimen/largeIconSize"
+                android:layout_height="@dimen/largeIconSize">
 
                 <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/bt_favouriteProductInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:id="@+id/bt_shoppingCard"
+                    android:layout_width="@dimen/largeIconSize"
+                    android:layout_height="@dimen/largeIconSize"
                     android:layout_marginHorizontal="@dimen/baseMargin"
                     android:background="?android:selectableItemBackground"
-                    android:src="@drawable/ic_favorite_uncheck" />
-            </LinearLayout>
+                    android:src="@drawable/ic_shopping_cart"
+                    android:tint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_descriptionProductInfo"
-                style="@style/SubDescriptionTextStyle"
-                android:text="@string/material_motion_easing_standard"
-                android:textColor="@color/black" />
-            <LinearLayout
-                android:layout_marginVertical="@dimen/middleOfViews"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/SubDescriptionTextStyle"
-                    android:text="@string/category"/>
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/DescriptionTextStyle"
-                    android:id="@+id/tv_categoryProductInfo"
-                    android:layout_marginHorizontal="@dimen/basePadding"
-                    android:text="bolalar oyinchogi"/>
-            </LinearLayout>
-            <LinearLayout
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:background="@color/grey"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="1dp"/>
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/SubDescriptionTextStyle"
-                    android:layout_marginHorizontal="@dimen/baseMargin"
-                    android:text="@string/dimensions_properties"/>
-                <LinearLayout
-                    android:background="@color/grey"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="1dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginVertical="@dimen/middleOfViews"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/SubDescriptionTextStyle"
-                    android:text="@string/weight"/>
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/DescriptionTextStyle"
-                    android:id="@+id/tv_weightProductInfo"
-                    android:layout_marginHorizontal="@dimen/basePadding"
-                    android:text="100"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginVertical="@dimen/middleOfViews"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/SubDescriptionTextStyle"
-                    android:text="@string/length"/>
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/DescriptionTextStyle"
-                    android:id="@+id/tv_lengthProductInfo"
-                    android:layout_marginHorizontal="@dimen/basePadding"
-                    android:text="100"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginVertical="@dimen/middleOfViews"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/SubDescriptionTextStyle"
-                    android:text="@string/width"/>
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/DescriptionTextStyle"
-                    android:id="@+id/tv_widthProductInfo"
-                    android:layout_marginHorizontal="@dimen/basePadding"
-                    android:text="100"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginVertical="@dimen/middleOfViews"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/SubDescriptionTextStyle"
-                    android:text="@string/height"/>
-                <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/DescriptionTextStyle"
-                    android:id="@+id/tv_heightProductInfo"
-                    android:layout_marginHorizontal="@dimen/basePadding"
-                    android:text="100"/>
-            </LinearLayout>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cv_count_product_basket"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:cardBackgroundColor="@color/red_for_bt"
+                    app:cardCornerRadius="8dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_count_product_basket"
+                        style="@style/IndexCountTextStyle"
+                        android:text="2" />
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
-
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/bt_share"
+                android:layout_width="@dimen/largeIconSize"
+                android:layout_height="@dimen/largeIconSize"
+                android:layout_marginEnd="@dimen/marginLarge"
+                android:background="?android:selectableItemBackground"
+                android:src="@drawable/ic_share"
+                android:tint="@color/white" />
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_addToCard"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/light_red_for_bt"
-            android:text="@string/add_to_card"
-            android:textColor="@color/red_for_bt" />
+            android:padding="@dimen/basePadding">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/bt_buyNow"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/red_for_bt"
-            android:text="@string/buy_now"
-            android:textColor="@color/white" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/imagePager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/item_image_pager" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/baseMargin"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/basePadding">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_priceProductInfo"
+                        style="@style/SubTitleButtonStyle"
+                        android:text="12000" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SubTitleButtonStyle"
+                        android:text="@string/so_m" />
+                    <FrameLayout
+                        android:layout_marginStart="@dimen/baseMargin"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_costProductInfo"
+                                style="@style/DescriptionTextStyle"
+                                android:text="14000" />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_marginStart="@dimen/middleOfViews"
+                                style="@style/DescriptionTextStyle"
+                                android:text="@string/so_m" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/red_for_bt"/>
+
+
+                    </FrameLayout>
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/bt_favouriteProductInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="invisible"
+                        android:layout_marginHorizontal="@dimen/baseMargin"
+                        android:background="?android:selectableItemBackground"
+                        android:src="@drawable/ic_favorite_uncheck" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_descriptionProductInfo"
+                    style="@style/SubDescriptionTextStyle"
+                    android:text="@string/material_motion_easing_standard"
+                    android:textColor="@color/black" />
+                <LinearLayout
+                    android:layout_marginVertical="@dimen/middleOfViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SubDescriptionTextStyle"
+                        android:text="@string/category"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/DescriptionTextStyle"
+                        android:id="@+id/tv_categoryProductInfo"
+                        android:layout_marginHorizontal="@dimen/basePadding"
+                        android:text="bolalar oyinchogi"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:background="@color/grey"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="1dp"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SubDescriptionTextStyle"
+                        android:layout_marginHorizontal="@dimen/baseMargin"
+                        android:text="@string/dimensions_properties"/>
+                    <LinearLayout
+                        android:background="@color/grey"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="1dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginVertical="@dimen/middleOfViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SubDescriptionTextStyle"
+                        android:text="@string/weight"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/DescriptionTextStyle"
+                        android:id="@+id/tv_weightProductInfo"
+                        android:layout_marginHorizontal="@dimen/basePadding"
+                        android:text="100"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginVertical="@dimen/middleOfViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SubDescriptionTextStyle"
+                        android:text="@string/length"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/DescriptionTextStyle"
+                        android:id="@+id/tv_lengthProductInfo"
+                        android:layout_marginHorizontal="@dimen/basePadding"
+                        android:text="100"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginVertical="@dimen/middleOfViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SubDescriptionTextStyle"
+                        android:text="@string/width"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/DescriptionTextStyle"
+                        android:id="@+id/tv_widthProductInfo"
+                        android:layout_marginHorizontal="@dimen/basePadding"
+                        android:text="100"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginVertical="@dimen/middleOfViews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SubDescriptionTextStyle"
+                        android:text="@string/height"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/DescriptionTextStyle"
+                        android:id="@+id/tv_heightProductInfo"
+                        android:layout_marginHorizontal="@dimen/basePadding"
+                        android:text="100"/>
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bt_addToCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/light_red_for_bt"
+                android:text="@string/add_to_card"
+                android:textColor="@color/red_for_bt" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/bt_buyNow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/red_for_bt"
+                android:text="@string/buy_now"
+                android:textColor="@color/white" />
+        </LinearLayout>
     </LinearLayout>
+    <ProgressBar
+        android:layout_marginTop="@dimen/baseMargin"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"/>
 
-</LinearLayout>
+
+</FrameLayout>

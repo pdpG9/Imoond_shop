@@ -4,10 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.products.ProductListFragment">
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/black"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/bt_back"
+                android:layout_width="@dimen/largeIconSize"
+                android:layout_height="@dimen/largeIconSize"
+                android:layout_margin="@dimen/basePadding"
+                android:background="?android:selectableItemBackground"
+                android:src="@drawable/ic_arrow_back" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SubTitleButtonStyle"
+                android:text="Category"
+                android:textColor="@color/white"
+                android:id="@+id/tv_categoryName"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:padding="@dimen/basePadding"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/rv_products"/>
+    </LinearLayout>
 </FrameLayout>
