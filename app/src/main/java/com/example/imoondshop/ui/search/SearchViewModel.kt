@@ -15,10 +15,14 @@ class SearchViewModel(private val getProductByNameUseCase: GetProductByNameUseCa
     private val _isShowProgress = MutableLiveData<Boolean>()
     val isShowProgress = _isShowProgress
 
+
     suspend fun getProductsByName(name:String){
+        if (name.isNotEmpty()){
+
         getProductByNameUseCase.execute(name,object :EventListener<List<ProductEntity>>{
             override fun success(data: List<ProductEntity>) {
                 _products.postValue(data)
+                _message.postValue("")
             }
 
             override fun error(message: String) {
@@ -30,9 +34,14 @@ class SearchViewModel(private val getProductByNameUseCase: GetProductByNameUseCa
             }
 
             override fun load(l: Boolean) {
+                if (l){
+                    _message.postValue("")
+                }
                 _isShowProgress.postValue(l)
             }
 
-        })
+        })}else{
+            _message.postValue("empty")
+        }
     }
 }

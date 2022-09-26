@@ -7,19 +7,6 @@
     android:background="@color/white"
     tools:context=".ui.search.SearchFragment">
     <LinearLayout
-        android:layout_marginTop="?actionBarSize"
-        android:orientation="vertical"
-        android:padding="@dimen/baseMargin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/DescriptionTextStyle"
-            android:layout_marginTop="@dimen/baseMargin"
-            android:layout_gravity="top|center"
-            android:id="@+id/tv_NotItem"
-            android:text="not result"/>
-    </LinearLayout>
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -33,7 +20,7 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/bt_back"
                 android:layout_width="@dimen/largeIconSize"
-                android:layout_height="@dimen/largeIconSize"
+                android:layout_height="wrap_content"
                 android:background="?android:selectableItemBackground"
                 android:scaleType="center"
                 android:src="@drawable/ic_arrow_back"
@@ -68,9 +55,25 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/baseMargin"
             tools:itemCount="5"
-            tools:listitem="@layout/item_product" />
+            />
     </LinearLayout>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/SubDescriptionTextStyle"
+        android:text="Find your Product!"
+        android:id="@+id/tv_noResoult"
+        android:visibility="visible"
+        android:layout_gravity="center"/>
+<com.google.android.material.progressindicator.CircularProgressIndicator
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:id="@+id/progressIndicator"
+    android:indeterminate="true"
+    app:trackColor="@color/cerulean"
+    app:indicatorColor="@color/red_for_bt"
+    />
 
 
 

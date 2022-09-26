@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.imoondshop.R
 import com.example.imoondshop.databinding.FragmentBasketBinding
 import com.example.imoondshop.ui.adapter.BasketProductAdapter
+import com.example.imoondshop.ui.adapter.ProductClickListener
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -58,7 +59,12 @@ class BasketFragment : Fragment() {
                 }
             }
             products.observe(viewLifecycleOwner){
-                binding.rvProductBasket.adapter = BasketProductAdapter(it)
+                binding.rvProductBasket.adapter = BasketProductAdapter(it,object :ProductClickListener{
+                    override fun onClick(amountAllPrice: Int) {
+                        binding.tvAllValueProductInCard.text = amountAllPrice.toString()
+                    }
+
+                })
                 lifecycleScope.launch {
                     loadRecommendedProducts()
                 }

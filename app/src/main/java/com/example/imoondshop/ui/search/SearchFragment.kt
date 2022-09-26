@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ import com.example.imoondshop.databinding.FragmentSearchBinding
 import com.example.imoondshop.ui.adapter.ProductAdapter
 import com.example.imoondshop.ui.adapter.ProductClickListener
 import com.example.imoondshop.untils.Constants
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.imoond.data.repository.room.maps.ProductMapper
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,12 +28,17 @@ class SearchFragment : Fragment() {
     private var _binding: FragmentSearchBinding? = null
     private val vm by viewModel<SearchViewModel>()
     private val binding get() = _binding!!
+    private lateinit var progressBar: CircularProgressIndicator
+    private lateinit var noItemText: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
+
+        progressBar = binding.progressIndicator
+        noItemText = binding.tvNoResoult
         return binding.root
     }
 
@@ -57,15 +64,25 @@ class SearchFragment : Fragment() {
 
         })
         binding.apply {
+            searchView.setOnClickListener(object : View.OnLongClickListener, View.OnClickListener {
+                override fun onLongClick(p0: View?): Boolean {
+                    return true
+                }
+
+                override fun onClick(p0: View?) {
+                    searchView.isIconified = false
+                }
+
+            })
             rvResultSearch.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             btNotifView.btNotification.setOnClickListener {
                 findNavController().navigate(R.id.action_searchFragment_to_notificationFragment)
             }
+            showProgressBar(false)
         }
         vm.apply {
             products.observe(viewLifecycleOwner) {
-
                 val adapter = ProductAdapter(it, object : ProductClickListener {
                     override fun onClick(position: Int) {
                         val bundle = bundleOf(Constants.PRODUCT_ID to position)
@@ -82,17 +99,22 @@ class SearchFragment : Fragment() {
                 }
             }
             message.observe(viewLifecycleOwner) {
-                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                // Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                noItemText.text = it
             }
             isShowProgress.observe(viewLifecycleOwner) {
-                if (it) {
-                    binding.progressBar.visibility = View.VISIBLE
-                } else {
-                    binding.progressBar.visibility = View.GONE
-                }
+                showProgressBar(it)
             }
 
         }
+
+
+    }
+
+    private fun showProgressBar(isShow: Boolean) {
+        if (isShow) {
+            progressBar.show()
+        } else progressBar.hide()
     }
 
 

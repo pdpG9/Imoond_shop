@@ -72,7 +72,11 @@ class ProductRepositoryImp(private val productApi: ProductApi) : ProductReposito
                         it.name.lowercase().startsWith(name.lowercase())
                     }
                     val data = ProductMapper().mapListEntity(list)
+                    if (data.isNotEmpty()){
                     eventListener.success(data)
+                    }else{
+                        eventListener.error("The product was not found!")
+                    }
                     eventListener.load(false)
                 }
             } else {

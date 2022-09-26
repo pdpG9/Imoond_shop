@@ -46,11 +46,12 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_favorite_check"
+                android:src="@drawable/ic_favorite_uncheck"
                 android:id="@+id/bt_favouriteItem"
                 android:tint="@color/red_for_bt" />
 
             <TextView
+                android:visibility="invisible"
                 android:text="1.2k"
                 android:id="@+id/tv_countLike"
                 android:layout_marginHorizontal="@dimen/baseMargin"

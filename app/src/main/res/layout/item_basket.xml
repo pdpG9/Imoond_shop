@@ -20,7 +20,7 @@
         android:layout_width="@dimen/baseIconSize"
         android:layout_height="@dimen/baseIconSize"
         android:scaleType="centerCrop"
-        android:background="?android:selectableItemBackground"
+        android:background="@color/white"
          android:src="@drawable/ic_uncheck"
         />
         <androidx.appcompat.widget.AppCompatImageView
@@ -45,7 +45,7 @@
 <TextView
     style="@style/ItemTitleTextStyle"
     android:text="Product name it is tv longer"
-    android:maxLines="2"
+    android:maxLines="1"
     android:padding="0dp"
     android:id="@+id/tv_nameProductCard"/>
 <TextView
@@ -79,6 +79,7 @@
      <com.google.android.material.card.MaterialCardView
          android:layout_width="@dimen/largeIconSize"
          android:layout_height="@dimen/largeIconSize"
+         android:id="@+id/btAddCount"
          app:cardBackgroundColor="@color/white"
          app:cardCornerRadius="@dimen/cardCornerRadius">
          <ImageView
@@ -100,6 +101,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/largeIconSize"
                 android:layout_height="@dimen/largeIconSize"
+                android:id="@+id/btRemoveCount"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="@dimen/cardCornerRadius">
                 <ImageView
