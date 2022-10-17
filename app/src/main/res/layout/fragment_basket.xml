@@ -2,52 +2,79 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingHorizontal="@dimen/basePadding"
-    android:paddingTop="@dimen/basePadding"
     android:background="@color/grey_bg"
     tools:context=".ui.basket.BasketFragment">
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_product_basket"
-                android:layout_width="match_parent"
-                tools:itemCount="3"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_basket"
-                android:orientation="vertical"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatTextView
-                style="@style/SubTitleButtonStyle"
-                android:layout_margin="@dimen/baseMargin"
-                android:text="@string/more_to_love"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/listProduct"
-                android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/black"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_marginStart="@dimen/baseMargin"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                tools:itemCount="1"
-                tools:listitem="@layout/item_product" />
-
+                android:gravity="start">
+                <TextView
+                    android:background="@color/black"
+                    style="@style/LogoTextStyleMin"
+                    android:text="@string/basket"
+                    android:textStyle="normal"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
         </LinearLayout>
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingHorizontal="@dimen/basePadding"
+            android:layout_weight="1">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_product_basket"
+                    android:layout_width="match_parent"
+                    tools:itemCount="3"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_basket"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content"/>
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/SubTitleButtonStyle"
+                    android:layout_margin="@dimen/baseMargin"
+                    android:text="@string/more_to_love"
+                    />
 
-    </androidx.core.widget.NestedScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_product" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+ <include
+     android:id="@+id/item_progress"
+     layout="@layout/item_progress_view"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
         android:padding="@dimen/basePadding"
-        android:background="@color/white"
         android:layout_gravity="bottom">
         <androidx.appcompat.widget.AppCompatImageButton
             android:layout_width="24dp"
@@ -67,24 +94,22 @@
             android:layout_weight="1"/>
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/ItemTitleTextStyle"
-            android:text="0,00"
+            tools:text="0,00"
             android:id="@+id/tv_allValueProductInCard"/>
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/ItemTitleTextStyle"
             android:layout_marginHorizontal="@dimen/baseMargin"
             android:text="@string/so_m"
             />
-
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/bt_checkout"
+            android:layout_margin="@dimen/middleOfViews"
             android:layout_marginHorizontal="@dimen/baseMargin"
             style="@style/SubDescriptionTextStyle"
             android:background="@drawable/bg_button_uncheck"
             android:text="@string/checkout"
             android:textColor="@color/white"
             />
-
     </LinearLayout>
 
 </FrameLayout>

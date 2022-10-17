@@ -5,11 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.imoondshop.R
+import com.example.imoondshop.untils.ProductClickListener
 import com.imoond.domain.model.CategoryEntity
 
 class CategoryAdapter(val list: List<CategoryEntity>, private val listener: ProductClickListener) :

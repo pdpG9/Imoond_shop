@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="@dimen/cardCornerRadius"
-    android:layout_margin="@dimen/baseMargin"
-    app:cardBackgroundColor="@color/white"
-    >
+    style="@style/MaterialCardBackgroundStyle"
+    android:layout_margin="@dimen/baseMargin">
 <LinearLayout
     android:orientation="horizontal"
     android:layout_margin="@dimen/baseMargin"
@@ -20,7 +19,7 @@
         android:layout_width="@dimen/baseIconSize"
         android:layout_height="@dimen/baseIconSize"
         android:scaleType="centerCrop"
-        android:background="@color/white"
+        android:background="?android:selectableItemBackground"
          android:src="@drawable/ic_uncheck"
         />
         <androidx.appcompat.widget.AppCompatImageView
@@ -36,7 +35,7 @@
 
     <LinearLayout
         android:id="@+id/linearlayout"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_weight="3"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="6dp"
@@ -44,13 +43,13 @@
         >
 <TextView
     style="@style/ItemTitleTextStyle"
-    android:text="Product name it is tv longer"
+    tools:text="Product name it is tv longer"
     android:maxLines="1"
     android:padding="0dp"
     android:id="@+id/tv_nameProductCard"/>
 <TextView
     style="@style/DescriptionTextStyle"
-    android:text="Product name it is tv longer"
+    tools:text="Product name it is tv longer"
     android:maxLines="1"
     android:id="@+id/tv_descriptionProductCard"/>
         <Space
@@ -64,7 +63,7 @@
             android:orientation="horizontal">
             <TextView
                 style="@style/SubTitleTextStyle"
-                android:text="2 880,31"
+                tools:text="2 880,31"
                 android:maxLines="1"
                 android:id="@+id/tv_costProductCard"/>
             <TextView
@@ -80,7 +79,7 @@
          android:layout_width="@dimen/largeIconSize"
          android:layout_height="@dimen/largeIconSize"
          android:id="@+id/btAddCount"
-         app:cardBackgroundColor="@color/white"
+         style="@style/MaterialCardBackgroundStyle"
          app:cardCornerRadius="@dimen/cardCornerRadius">
          <ImageView
              android:layout_margin="@dimen/basePadding"
@@ -96,13 +95,12 @@
                 style="@style/SubTitleTextStyle"
                 android:text="1"
                 android:gravity="center"
-                android:textColor="@color/blue"
                 android:id="@+id/tv_countProductCard"/>
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/largeIconSize"
                 android:layout_height="@dimen/largeIconSize"
                 android:id="@+id/btRemoveCount"
-                app:cardBackgroundColor="@color/white"
+                style="@style/MaterialCardBackgroundStyle"
                 app:cardCornerRadius="@dimen/cardCornerRadius">
                 <ImageView
                     android:layout_margin="@dimen/basePadding"

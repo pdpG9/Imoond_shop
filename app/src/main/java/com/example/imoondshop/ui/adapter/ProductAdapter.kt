@@ -8,11 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.imoondshop.R
+import com.example.imoondshop.untils.ProductClickListener
 import com.imoond.domain.model.ProductEntity
 
-class ProductAdapter(val list: List<ProductEntity>, listener: ProductClickListener) :
+class ProductAdapter(val list: List<ProductEntity>,private val listener: ProductClickListener) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
-    private val listener = listener
 
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         private val image = itemView.findViewById<ImageView>(R.id.iv_ProductItem)
@@ -53,6 +53,3 @@ class ProductAdapter(val list: List<ProductEntity>, listener: ProductClickListen
     override fun getItemCount() = list.size
 }
 
-interface ProductClickListener {
-    fun onClick(position: Int)
-}

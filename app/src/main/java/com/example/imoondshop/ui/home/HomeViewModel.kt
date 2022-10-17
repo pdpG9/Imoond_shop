@@ -5,12 +5,14 @@ import androidx.lifecycle.*
 import com.imoond.domain.model.CategoryEntity
 import com.imoond.domain.model.ProductEntity
 import com.imoond.domain.repository.EventListener
-import com.imoond.domain.usecase.GetCategoryUseCase
-import com.imoond.domain.usecase.GetProductListUseCase
+import com.imoond.domain.usecase.category.GetCategoryUseCase
+import com.imoond.domain.usecase.local.GetAccountUseCase
+import com.imoond.domain.usecase.product.GetProductListUseCase
 
 class HomeViewModel(
     private val getProductListUseCase: GetProductListUseCase,
-    private val getCategoryUseCase: GetCategoryUseCase
+    private val getCategoryUseCase: GetCategoryUseCase,
+    private val getAccountUseCase: GetAccountUseCase
 ) : ViewModel() {
     private val _productsLive = MutableLiveData<List<ProductEntity>>()
     val productLive: LiveData<List<ProductEntity>> = _productsLive
@@ -22,10 +24,31 @@ class HomeViewModel(
     val categoryLive: LiveData<List<CategoryEntity>> = _categoryLive
     private val _isClickBtTopProd = MutableLiveData<Boolean>()
     val isClickBtTopProd: LiveData<Boolean> = _isClickBtTopProd
+    private val _isHaveAccount = MutableLiveData<Boolean>()
+    val isHaveAccount: LiveData<Boolean> = _isHaveAccount
 
     suspend fun loadData() {
         Log.d("TAG", "loadData: ")
 
+
+        getAccountUseCase.execute(object :EventListener<Int>{
+            override fun success(data: Int) {
+                _isHaveAccount.postValue(true)
+            }
+
+            override fun error(message: String) {
+               _isHaveAccount.postValue(false)
+            }
+
+            override fun empty() {
+               _isHaveAccount.postValue(false)
+            }
+
+            override fun load(l: Boolean) {
+
+            }
+
+        })
         getProductListUseCase.execute(object : EventListener<List<ProductEntity>> {
             override fun success(data: List<ProductEntity>) {
                 _productsLive.postValue(data)

@@ -28,13 +28,20 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destionation, _ ->
             when (destionation.id) {
-                R.id.homeFragment -> showBottomNav()
+                R.id.homeFragment -> {
+                    showBottomNav()
+                }
+                R.id.categoryFragment -> {
+                    showBottomNav()
+                }
 
-                R.id.categoryFragment -> showBottomNav()
+                R.id.basketFragment -> {
+                    showBottomNav()
+                }
 
-                R.id.basketFragment -> showBottomNav()
-
-                R.id.accountFragment -> showBottomNav()
+                R.id.accountFragment -> {
+                    showBottomNav()
+                }
 
                 else -> hideBottomNav()
             }
@@ -51,7 +58,8 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavView.visibility = View.GONE
 
     }
-    private fun changeColorStatusBar(color:Int){
+
+    private fun changeColorStatusBar(color: Int) {
         val window = window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = color

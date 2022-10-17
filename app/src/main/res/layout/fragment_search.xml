@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    style="@style/MainLayoutBgStyle"
     tools:context=".ui.search.SearchFragment">
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,57 +23,38 @@
                 android:layout_height="wrap_content"
                 android:background="?android:selectableItemBackground"
                 android:scaleType="center"
+                style="@style/ImageIconsStyle"
                 android:src="@drawable/ic_arrow_back"
-                android:tint="@color/black" />
+                />
 
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="0dp"
+                android:layout_weight="1"
+                app:iconifiedByDefault="false"
+                app:queryHint="Find your product..."
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/baseMargin"
-                android:layout_weight="1"
-                android:background="@drawable/bg_toolbar_search"
-                app:closeIcon="@drawable/ic_close" />
+                style="@style/SearchViewStyle" />
 
             <include
-                android:id="@+id/bt_NotifView"
+                android:id="@+id/item_notification"
                 layout="@layout/item_notification_index" />
 
         </LinearLayout>
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/white"
-            android:visibility="gone" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_resultSearch"
-            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/baseMargin"
             tools:itemCount="5"
             />
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/SubDescriptionTextStyle"
-        android:text="Find your Product!"
-        android:id="@+id/tv_noResoult"
-        android:visibility="visible"
-        android:layout_gravity="center"/>
-<com.google.android.material.progressindicator.CircularProgressIndicator
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:id="@+id/progressIndicator"
-    android:indeterminate="true"
-    app:trackColor="@color/cerulean"
-    app:indicatorColor="@color/red_for_bt"
-    />
+
+<include
+    layout="@layout/item_progress_view"
+    android:id="@+id/progressIndicator"/>
 
 
 

@@ -1,17 +1,16 @@
 package com.example.imoondshop.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
-import android.widget.RadioButton
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.imoondshop.R
+import com.example.imoondshop.untils.ProductClickListener
 import com.imoond.domain.model.ProductEntity
 
 class BasketProductAdapter(val list: List<ProductEntity>,private val listener: ProductClickListener) :

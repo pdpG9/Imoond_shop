@@ -1,5 +1,6 @@
 package com.example.imoondshop.di
 
+import com.example.imoondshop.ui.account.AccountViewModel
 import com.example.imoondshop.ui.basket.BasketViewModel
 import com.example.imoondshop.ui.buy.BuyViewModel
 import com.example.imoondshop.ui.category.CategoryViewModel
@@ -12,33 +13,42 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    viewModel<HomeViewModel>{
+    viewModel<HomeViewModel> {
         HomeViewModel(
             getProductListUseCase = get(),
-            getCategoryUseCase = get()
+            getCategoryUseCase = get(),
+            getAccountUseCase = get()
         )
     }
 
-    viewModel<CategoryViewModel>{
+    viewModel<CategoryViewModel> {
         CategoryViewModel(getCategoryUseCase = get())
     }
-    viewModel<ProductInfoViewModel>{
-        ProductInfoViewModel(getProductByIdUseCase = get(), addProductToCardUseCase = get(), getProductsFromBasketUseCase = get())
+    viewModel<ProductInfoViewModel> {
+        ProductInfoViewModel(
+            getProductByIdUseCase = get(),
+            addProductToCardUseCase = get(),
+            getProductsFromBasketUseCase = get()
+        )
     }
-//    viewModel<ProductInfoViewModel>{
-//        ProductInfoViewModel(getProductByIdUseCase = get())
-//    }
-    viewModel<SearchViewModel>{
+    viewModel<SearchViewModel> {
         SearchViewModel(getProductByNameUseCase = get())
     }
-    viewModel<ProductListViewModel>{
+    viewModel<ProductListViewModel> {
         ProductListViewModel(getProductsByCategory = get())
     }
-    viewModel<BuyViewModel>{
+    viewModel<BuyViewModel> {
         BuyViewModel()
     }
-    viewModel<BasketViewModel>{
-        BasketViewModel(repository = get(), getProductByIdUseCase = get(), getProductsByCategory = get())
+    viewModel<BasketViewModel> {
+        BasketViewModel(
+            repository = get(),
+            getProductByIdUseCase = get(),
+            getProductsByCategory = get()
+        )
+    }
+    viewModel<AccountViewModel> {
+        AccountViewModel(productApi = get())
     }
 
 }

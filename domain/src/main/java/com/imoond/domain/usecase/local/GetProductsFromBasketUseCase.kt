@@ -1,6 +1,5 @@
-package com.imoond.domain.usecase
+package com.imoond.domain.usecase.local
 
-import com.imoond.domain.model.ProductEntity
 import com.imoond.domain.repository.EventListener
 import com.imoond.domain.repository.LocalRepository
 

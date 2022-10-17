@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.imoond.domain.model.CategoryEntity
 import com.imoond.domain.repository.EventListener
-import com.imoond.domain.usecase.GetCategoryUseCase
+import com.imoond.domain.usecase.category.GetCategoryUseCase
 
 class CategoryViewModel(
     private val getCategoryUseCase: GetCategoryUseCase,
@@ -23,19 +23,24 @@ class CategoryViewModel(
         getCategoryUseCase.execute(object :EventListener<List<CategoryEntity>>{
             override fun error(message: String) {
                 _message.postValue(message)
+                _isShowProgress.postValue(false)
             }
 
             override fun empty() {
+                _isShowProgress.postValue(false)
                 _message.postValue("empty")
             }
 
             override fun load(l: Boolean) {
                 _isShowProgress.postValue(l)
+                _message.postValue("")
             }
 
 
             override fun success(data: List<CategoryEntity>) {
                 _categoryLive.postValue(data)
+                _isShowProgress.postValue(false)
+                _message.postValue("")
             }
 
         })

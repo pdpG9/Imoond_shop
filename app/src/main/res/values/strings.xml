@@ -45,4 +45,9 @@
     <string name="height">height</string>
     <string name="babies_toys">Babies toys</string>
     <string name="notification">Notification</string>
+    <string name="hi">Hi</string>
+    <string name="sold">sold</string>
+    <string name="not_notifications">not notifications</string>
+    <string name="try_again">Try again</string>
+    <string name="product_image">product image</string>
 </resources>

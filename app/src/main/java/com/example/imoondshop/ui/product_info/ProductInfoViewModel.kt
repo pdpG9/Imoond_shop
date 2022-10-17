@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.imoond.domain.model.ProductEntity
 import com.imoond.domain.repository.EventListener
-import com.imoond.domain.usecase.AddProductToCardUseCase
-import com.imoond.domain.usecase.GetProductByIdUseCase
-import com.imoond.domain.usecase.GetProductsFromBasketUseCase
+import com.imoond.domain.usecase.local.AddProductToCardUseCase
+import com.imoond.domain.usecase.product.GetProductByIdUseCase
+import com.imoond.domain.usecase.local.GetProductsFromBasketUseCase
 
 class ProductInfoViewModel(
     private val getProductByIdUseCase: GetProductByIdUseCase,
@@ -28,17 +28,20 @@ class ProductInfoViewModel(
         getProductsFromBasketUseCase.execute(object :EventListener<List<Int>>{
             override fun success(data: List<Int>) {
                 _countBasketPr.postValue(data.size)
-                Log.d("TAG", "getProductsFromBasketUseCase->success:${data.size} ")
+                _message.postValue("")
+                //Log.d("TAG", "getProductsFromBasketUseCase->success:${data.size} ")
             }
 
             override fun error(message: String) {
                 _countBasketPr.postValue(0)
-                Log.d("TAG", "error:$message ")
+                _message.postValue(message)
+               // Log.d("TAG", "error:$message ")
             }
 
             override fun empty() {
                 _countBasketPr.postValue(0)
-                Log.d("TAG", "empty: ")
+                _message.postValue("empty")
+              //  Log.d("TAG", "empty: ")
             }
 
             override fun load(l: Boolean) {
@@ -55,6 +58,7 @@ class ProductInfoViewModel(
         getProductByIdUseCase.execute(position, object : EventListener<ProductEntity> {
             override fun success(data: ProductEntity) {
                 _productData.postValue(data)
+                _message.postValue("")
             }
 
             override fun error(message: String) {
@@ -67,6 +71,7 @@ class ProductInfoViewModel(
 
             override fun load(l: Boolean) {
                 _isShowProgress.postValue(l)
+                _message.postValue("")
 
             }
 
@@ -81,9 +86,9 @@ class ProductInfoViewModel(
             if (temp!=null) temp =0
             temp = temp?.plus(1)
             _countBasketPr.postValue(temp!!)
-            _message.postValue("Product successfully added to basket!")
+          //  _message.postValue("Product successfully added to basket!")
         }else{
-            _message.postValue("Product not found!")
+        //    _message.postValue("Product not found!")
         }
     }
 

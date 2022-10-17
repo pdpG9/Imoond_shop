@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.imoondshop.R
+import com.example.imoondshop.untils.ProductClickListener
 import com.imoond.domain.model.CategoryEntity
 
 class CategoryFragmentAdapter(val list: List<CategoryEntity>,private val listener: ProductClickListener) :

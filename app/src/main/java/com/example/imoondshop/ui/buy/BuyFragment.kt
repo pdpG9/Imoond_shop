@@ -1,12 +1,10 @@
 package com.example.imoondshop.ui.buy
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.imoondshop.R
 import com.example.imoondshop.databinding.FragmentBuyBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -24,8 +22,8 @@ class BuyFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
 
 
     }

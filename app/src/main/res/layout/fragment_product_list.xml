@@ -24,7 +24,8 @@
                 android:src="@drawable/ic_arrow_back" />
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/SubTitleButtonStyle"
-                android:text="Category"
+                android:text="@string/category"
+                android:background="@color/black"
                 android:textColor="@color/white"
                 android:id="@+id/tv_categoryName"/>
         </LinearLayout>
@@ -36,4 +37,7 @@
             android:layout_weight="1"
             android:id="@+id/rv_products"/>
     </LinearLayout>
+    <include
+        android:id="@+id/item_progress"
+        layout="@layout/item_progress_view"/>
 </FrameLayout>

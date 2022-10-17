@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.imoond.domain.model.ProductEntity
 import com.imoond.domain.repository.EventListener
-import com.imoond.domain.usecase.GetProductByNameUseCase
+import com.imoond.domain.usecase.product.GetProductByNameUseCase
 
 class SearchViewModel(private val getProductByNameUseCase: GetProductByNameUseCase) : ViewModel() {
     private val _products = MutableLiveData<List<ProductEntity>>()

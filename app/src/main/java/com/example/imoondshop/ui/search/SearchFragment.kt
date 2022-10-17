@@ -8,19 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.imoondshop.R
 import com.example.imoondshop.databinding.FragmentSearchBinding
 import com.example.imoondshop.ui.adapter.ProductAdapter
-import com.example.imoondshop.ui.adapter.ProductClickListener
 import com.example.imoondshop.untils.Constants
+import com.example.imoondshop.untils.ProductClickListener
 import com.google.android.material.progressindicator.CircularProgressIndicator
-import com.imoond.data.repository.room.maps.ProductMapper
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -37,13 +34,13 @@ class SearchFragment : Fragment() {
     ): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        progressBar = binding.progressIndicator
-        noItemText = binding.tvNoResoult
+        progressBar = binding.progressIndicator.progressBar
+        noItemText = binding.progressIndicator.tvNoResult
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
         binding.btBack.setOnClickListener {
             findNavController().popBackStack(R.id.searchFragment, true)
         }
@@ -76,7 +73,7 @@ class SearchFragment : Fragment() {
             })
             rvResultSearch.layoutManager =
                 StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            btNotifView.btNotification.setOnClickListener {
+            itemNotification.btNotification.setOnClickListener {
                 findNavController().navigate(R.id.action_searchFragment_to_notificationFragment)
             }
             showProgressBar(false)

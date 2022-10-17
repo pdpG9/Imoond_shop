@@ -1,4 +1,4 @@
-package com.imoond.domain.usecase
+package com.imoond.domain.usecase.category
 
 import com.imoond.domain.model.CategoryEntity
 import com.imoond.domain.repository.CategoryRepository

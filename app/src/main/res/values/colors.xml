@@ -10,6 +10,10 @@
 
 
     <color name="transparent10">#00FFFFFF</color>
+    <color name="transparent20">#27000000</color>
+
+    <color name="lightTextColor">#000</color>
+    <color name="darkTextColor">#FFF</color>
 
     <color name="red_for_bt">#EE1919</color>
     <color name="red">#EE1919</color>

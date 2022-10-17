@@ -25,6 +25,23 @@ class LocalRepositoryImp(private val pref: SharedPreferences):LocalRepository {
         }
     }
 
+    override fun saveAccount(userId: Int) {
+        pref.edit().putInt(Constants.USER_ID,userId).apply()
+    }
+
+    override fun getAccount(eventListener: EventListener<Int>) {
+        val id = pref.getInt(Constants.USER_ID,-1)
+        if (id!=-1){
+            eventListener.success(id)
+        }else{
+            if (id==-1){
+                eventListener.empty()
+            }else{
+                eventListener.error("Something error with Shared Preferences!")
+            }
+        }
+    }
+
     override suspend fun addProductToCard(productEntity: ProductEntity): Boolean {
         return try {
             var s =  pref.getString(Constants.CARD_PRODUCTS,"")!!

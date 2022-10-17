@@ -1,6 +1,5 @@
 package com.imoond.domain.repository
 
-import com.imoond.domain.model.CategoryEntity
 import com.imoond.domain.model.ProductEntity
 
 interface ProductRepository {
@@ -10,4 +9,5 @@ interface ProductRepository {
     suspend fun getTopProducts(eventListener: EventListener<List<ProductEntity>>)
     suspend fun getRecommended(eventListener: EventListener<List<ProductEntity>>)
     suspend fun getProductsByCategory(eventListener: EventListener<List<ProductEntity>>,categoryName: String)
+    suspend fun getProductsByPage(page:Int,eventListener: EventListener<List<ProductEntity>>)
 }

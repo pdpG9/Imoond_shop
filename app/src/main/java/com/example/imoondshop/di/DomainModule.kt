@@ -1,11 +1,16 @@
 package com.example.imoondshop.di
 
 import com.imoond.domain.usecase.*
+import com.imoond.domain.usecase.category.GetCategoryUseCase
+import com.imoond.domain.usecase.local.*
+import com.imoond.domain.usecase.product.*
 import org.koin.dsl.module
 
 val domainModule = module {
-
-    factory <GetProductListUseCase>{
+    factory {
+        GetProductByPageUseCase(repository = get())
+    }
+    factory<GetProductListUseCase> {
         GetProductListUseCase(repository = get())
     }
     factory<GetProductByIdUseCase> {
@@ -34,6 +39,12 @@ val domainModule = module {
     }
     factory<DeleteProductFromCardUseCase> {
         DeleteProductFromCardUseCase(repository = get())
+    }
+    factory<GetAccountUseCase> {
+        GetAccountUseCase(repository = get())
+    }
+    factory<SaveAccountUseCase> {
+        SaveAccountUseCase( )
     }
 
 }

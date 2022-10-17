@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.imoondshop.R
 import com.example.imoondshop.databinding.FragmentNotificationBinding
 
 class NotificationFragment : Fragment() {
@@ -23,8 +22,8 @@ class NotificationFragment : Fragment() {
     return binding!!.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
         vm = ViewModelProvider(this).get(NotificationViewModel::class.java)
        binding!!.btBack.setOnClickListener {
            findNavController().popBackStack()

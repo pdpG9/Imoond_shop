@@ -22,11 +22,9 @@ object Network {
             val newRequest = request.newBuilder()
 //                .addHeader("consumer_key",Constants.CONSUMER_KEY)
 //                .addHeader("consumer_secret",Constants.CONSUMER_SECRET)
-                .url("${request.url}?consumer_key=${Constants.CONSUMER_KEY}&consumer_secret=${Constants.CONSUMER_SECRET}")
+              //  .url("${request.url}?consumer_key=${Constants.CONSUMER_KEY}&consumer_secret=${Constants.CONSUMER_SECRET}")
                 .build()
-            val responseNew = it.proceed(newRequest)
-            Log.d("TAG", "new request url:${request.url} ")
-            return@addInterceptor responseNew
+            return@addInterceptor it.proceed(newRequest)
         }
         .build()
 
