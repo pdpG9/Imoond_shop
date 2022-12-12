@@ -16,13 +16,13 @@ import com.imoond.data.repository.network.ProductApi
 import kotlinx.coroutines.flow.Flow
 
 class AccountViewModel(private val productApi: ProductApi) : ViewModel() {
-    var productsFlow: Flow<PagingData<ProductModelItem>>? = null
     private val _message = MutableLiveData<String>()
     val message: LiveData<String> = _message
     private val _toast = MutableLiveData<String>()
     val toast: LiveData<String> = _toast
     private val _isShowLoader = MutableLiveData<Boolean>()
     val isShowLoader: LiveData<Boolean> = _isShowLoader
+    var productsFlow: Flow<PagingData<ProductModelItem>>? = null
 
     init {
         Log.d("TAG", "init: ")

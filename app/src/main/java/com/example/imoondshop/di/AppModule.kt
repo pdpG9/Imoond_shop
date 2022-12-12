@@ -15,7 +15,7 @@ val appModule = module {
 
     viewModel<HomeViewModel> {
         HomeViewModel(
-            getProductListUseCase = get(),
+            productApi = get(),
             getCategoryUseCase = get(),
             getAccountUseCase = get()
         )

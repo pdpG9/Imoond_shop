@@ -85,7 +85,6 @@
                 android:layout_margin="@dimen/marginLarge"
                 app:cardCornerRadius="@dimen/cardCornerRadius"
                 app:cardElevation="0dp">
-
                 <include layout="@layout/logo_layout" />
             </com.google.android.material.card.MaterialCardView>
 

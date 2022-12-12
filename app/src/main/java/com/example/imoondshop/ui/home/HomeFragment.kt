@@ -16,8 +16,11 @@ import com.example.imoondshop.R
 import com.example.imoondshop.databinding.FragmentHomeBinding
 import com.example.imoondshop.ui.adapter.CategoryAdapter
 import com.example.imoondshop.ui.adapter.ProductAdapter
+import com.example.imoondshop.ui.adapter.RecyclerViewAdapter
 import com.example.imoondshop.untils.Constants
 import com.example.imoondshop.untils.ProductClickListener
+import com.example.imoondshop.untils.showProgress
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,6 +32,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private var isDownload = false
     private val binding get() = _binding!!
+    private lateinit var rvAdapter: RecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,8 +76,20 @@ class HomeFragment : Fragment() {
                     vm.loadData()
                 }
             }
+
+            listProduct.apply {
+                layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                rvAdapter = RecyclerViewAdapter()
+                adapter = rvAdapter
+            }
+
         }
         vm.apply {
+            lifecycleScope.launch {
+                productsFlow?.collectLatest {
+                    rvAdapter.submitData(it)
+                }
+            }
             isHaveAccount.observe(viewLifecycleOwner) {
                 if (it) {
                     binding.apply {
@@ -95,25 +111,19 @@ class HomeFragment : Fragment() {
                 binding.swipeRefresh.isRefreshing = it
             }
 
-            productLive.observe(viewLifecycleOwner) {
-                val adapter = ProductAdapter(it, object : ProductClickListener {
-                    override fun onClick(position: Int) {
-                        val bundle = bundleOf(Constants.PRODUCT_ID to position)
-                        Log.d("TAG", "onClick: $position")
-                        findNavController().navigate(
-                            R.id.action_homeFragment_to_productInfoFragment,
-                            bundle
-                        )
-                    }
-
-                })
-
-                binding.apply {
-                    listProduct.layoutManager =
-                        StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                    listProduct.adapter = adapter
-                }
-            }
+//            productLive.observe(viewLifecycleOwner) {
+//                val adapter = ProductAdapter(it, object : ProductClickListener {
+//                    override fun onClick(position: Int) {
+//                        val bundle = bundleOf(Constants.PRODUCT_ID to position)
+//                        Log.d("TAG", "onClick: $position")
+//                        findNavController().navigate(
+//                            R.id.action_homeFragment_to_productInfoFragment,
+//                            bundle
+//                        )
+//                    }
+//
+//                })
+//            }
             categoryLive.observe(viewLifecycleOwner) {
                 val adapter = CategoryAdapter(it, object : ProductClickListener {
                     override fun onClick(position: Int) {
